@@ -1,0 +1,46 @@
+@startuml
+
+class FlaskApp {
+    - app: Flask
+    - tokenizer: BertTokenizer
+    - model: BertForSequenceClassification
+    - rouge_scorer: RougeScorer
+    - device: str
+    + home(): str
+    + process(): dict
+}
+
+class TextProcessor {
+    + detect_language(text: str): str
+    + translate_text(text: str, src: str, dest: str): str
+    + generate_summary(text: str, max_length: int, min_length: int): str
+    + summarize_text(text: str, lang: str): dict
+    + calculate_rouge_scores(reference: str, candidate: str): dict
+}
+
+class TestSuite {
+    + test_summarization(): void
+}
+
+FlaskApp --> TextProcessor : uses
+FlaskApp --> TestSuite : uses
+
+note right of FlaskApp
+  Main application class that handles
+  HTTP requests and routes
+end note
+
+note right of TextProcessor
+  Handles all text processing operations:
+  - Language detection
+  - Translation
+  - Summarization
+  - ROUGE score calculation
+end note
+
+note right of TestSuite
+  Contains test cases for
+  summarization functionality
+end note
+
+@enduml 

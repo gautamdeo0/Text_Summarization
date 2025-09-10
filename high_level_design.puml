@@ -1,0 +1,47 @@
+graph TD
+    subgraph "Presentation Layer"
+        UI[Web Interface]
+    end
+
+    subgraph "Application Layer"
+        Flask(Flask Application)
+    end
+
+    subgraph "Processing Layer"
+        TextProcessingSystem[Text Processing System]
+    end
+
+    subgraph "Data & Models Layer"
+        MLModels[Machine Learning Models]
+        ModelCache[HuggingFace Model Cache]
+    end
+
+    subgraph "External Services"
+        GoogleAPI[Google Translate API]
+    end
+
+    UI --> Flask : HTTP Requests
+    Flask --> TextProcessingSystem : Process Text
+    TextProcessingSystem --> MLModels : Utilize Models
+    TextProcessingSystem --> GoogleAPI : Translation API Calls
+    MLModels --> ModelCache : Load Models
+
+    %% Adding notes for clarity if needed
+    %% Note: Direct notes on components are not standard in this simple Mermaid graph type.
+    %% Descriptions can be added below the diagram in markdown. 
+
+    %% Use Case Diagram
+    actor User
+
+    rectangle "Text Processing System" {
+        usecase UC1[Process Text]
+        usecase UC2[Input Text]
+        usecase UC3[Select Language Direction]
+        usecase UC4[View Results]
+
+        UC1 .> UC2 : include
+        UC1 .> UC3 : include
+        UC1 .> UC4 : include
+    }
+
+    User --> UC1 

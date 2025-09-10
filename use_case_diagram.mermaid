@@ -1,0 +1,25 @@
+```mermaid
+%% Use Case Diagram for Text Processing System
+
+actor "End User" as User
+
+rectangle "Text Processing System" {
+    usecase UC1[Process Text Input
+--
+Translate, Summarize, Score]
+    usecase UC2[Input Text]
+    usecase UC3[Select Language Direction]
+    usecase UC4[View Translated Text]
+    usecase UC5[View Generated Summary]
+    usecase UC6[View ROUGE Scores]
+}
+
+User --> UC1 : Initiates
+UC1 .> UC2 : include
+UC1 .> UC3 : include
+UC1 .> UC4 : include
+UC1 .> UC5 : include
+UC1 .> UC6 : include
+
+%% Notes (Mermaid use case diagrams don't have notes like PlantUML)
+``` 
